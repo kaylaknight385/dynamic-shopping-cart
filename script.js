@@ -1,4 +1,7 @@
-document.addEventListener("DOMCOntentLoaded", function () {
+//TEST
+console.log("JS FILE IS LOADED!");
+
+document.addEventListener("DOMContentLoaded", function () {
   console.log("Cart Loading!");
 
   const productNameInput = document.getElementById("product-name");
@@ -15,6 +18,7 @@ document.addEventListener("DOMCOntentLoaded", function () {
     totalPriceSpan.textContent = totalPrice.toFixed(2);
   }
 
+  // Function to remove items
   function removeItem(event) {
     const item = event.target.closest("li");
     const price = parseFloat(item.dataset.price);
@@ -22,9 +26,11 @@ document.addEventListener("DOMCOntentLoaded", function () {
     item.remove();
   }
 
-  // Function 2 add items
+  // Function to add items
   function addProduct() {
-    const productName = productNameInput.ariaValueMax.trim();
+    console.log('ADD PRODUCT BUTTON CLICKED');
+
+    const productName = productNameInput.value.trim();
     const productPrice = parseFloat(productPriceInput.value);
 
     if (productName === "") {
@@ -37,29 +43,27 @@ document.addEventListener("DOMCOntentLoaded", function () {
       return;
     }
 
-    //Neeew item liist
+    // New item list
     const listItem = document.createElement("li");
     listItem.dataset.price = productPrice;
 
     listItem.innerHTML = `
-          ${productName} - $${productPrice.toFixed(2)}
-          <button class="remove-btn">Remove</button>
-        `;
+      ${productName} - $${productPrice.toFixed(2)}
+      <button class="remove-btn">Remove</button>
+    `;
 
     const removeButton = listItem.querySelector(".remove-btn");
     removeButton.addEventListener("click", removeItem);
 
-    //add and update cart
-
+    // Add to cart and update total
     cart.appendChild(listItem);
     updateTotalPrice(productPrice);
 
-
-    //clear input  
+    // Clear input fields
     productNameInput.value = '';
     productPriceInput.value = '';
-
-    //add button
-    addProductButton.addEventListener("click", addProduct);
   }
+
+  addProductButton.addEventListener("click", addProduct);
+  
 });
