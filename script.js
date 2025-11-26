@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let totalPrice = 0;
 
-  // Function to update the total price
+  // function to update the total price
   function updateTotalPrice(amount) {
     totalPrice += amount;
     totalPriceSpan.textContent = totalPrice.toFixed(2);
   }
 
-  // Function to remove items
+  // the function to remove items
   function removeItem(event) {
     const item = event.target.closest("li");
     const price = parseFloat(item.dataset.price);
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     item.remove();
   }
 
-  // Function to add items
+  // the function to add items
   function addProduct() {
     console.log('ADD PRODUCT BUTTON CLICKED');
 
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // New item list
+    // new item list
     const listItem = document.createElement("li");
     listItem.dataset.price = productPrice;
 
@@ -55,11 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const removeButton = listItem.querySelector(".remove-btn");
     removeButton.addEventListener("click", removeItem);
 
-    // Add to cart and update total
-    cart.appendChild(listItem);
+    // add to cart and update total
+    cart.appendChild(listItem);33
     updateTotalPrice(productPrice);
 
-    // Clear input fields
+    //leaves input clear to type in
     productNameInput.value = '';
     productPriceInput.value = '';
   }
